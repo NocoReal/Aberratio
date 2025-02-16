@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class ColorManager : MonoBehaviour
 {
+    public GameObject Player;
     [HideInInspector] public static ColorManager instance;
     [HideInInspector] public bool RedG, GreenG, BlueG, CDA; // EVERYTHING IS INVERSED IF ITS FALSE ITS ON, IF ITS TRUE ITS OFF; CDA stands for Can't Do All, as in you cant turn off all color.
     string lastColor;
+    bool succeded;
     
    private void Awake()
     {
@@ -20,7 +22,8 @@ public class ColorManager : MonoBehaviour
                 if(lastColor == "red") 
                 {
                     RedG = false;
-                    StartCoroutine(wait1());
+                    Player.GetComponent<ColorTogglePlayer>().FailPlay();
+                    succeded = false;
                 }
             }
             if (RedG == true && GreenG == true && BlueG == true)
@@ -28,7 +31,8 @@ public class ColorManager : MonoBehaviour
                 if (lastColor == "green")
                 {
                     GreenG = false;
-                    StartCoroutine(wait1());
+                    Player.GetComponent<ColorTogglePlayer>().FailPlay();
+                    succeded = false;
                 }
             }
             if (RedG == true && GreenG == true && BlueG == true)
@@ -36,8 +40,15 @@ public class ColorManager : MonoBehaviour
                 if (lastColor == "blue")
                 {
                     BlueG = false;
-                    StartCoroutine(wait1());
+                    Player.GetComponent<ColorTogglePlayer>().FailPlay();
+                    succeded = false;
                 }
+            }
+            if (succeded)
+            {
+                ControlGlobalVolume.instance.RunColorToggle();
+                Player.GetComponent<ColorTogglePlayer>().SucceedPlay();
+                succeded = false;
             }
             lastColor = null;
         }
@@ -53,6 +64,7 @@ public class ColorManager : MonoBehaviour
         {
             RedG = true;
         }
+        succeded = true;
         lastColor = "red";
     }
     public void Green()
@@ -65,7 +77,8 @@ public class ColorManager : MonoBehaviour
         {
             GreenG = true;
         }
-        lastColor="green";
+        succeded = true;
+        lastColor ="green";
     }
     public void Blue()
     {
@@ -77,12 +90,7 @@ public class ColorManager : MonoBehaviour
         {
             BlueG = true;
         }
+        succeded = true;
         lastColor ="blue";
-    }
-    IEnumerator wait1()
-    {
-        CDA = true;
-        yield return new WaitForSeconds(1);
-        CDA = false;
     }
 }

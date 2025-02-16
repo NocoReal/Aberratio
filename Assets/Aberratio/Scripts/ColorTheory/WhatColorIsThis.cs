@@ -3,7 +3,7 @@ using UnityEngine;
 public class WhatColorIsThis : MonoBehaviour // this controls if the object should be shown or not
 {
     
-    bool RedB,BlueB,GreenB;
+    bool RedB,BlueB,GreenB,transparent;
     private bool RedP, GreenP, BlueP, RedC, GreenC,BlueC;
     int colorNrP = 0, colorNrG = 0;
     MeshRenderer mR;
@@ -11,15 +11,16 @@ public class WhatColorIsThis : MonoBehaviour // this controls if the object shou
     Rigidbody rb;
     Renderer rndr;
     Material mat;
-
-    private void Start()
+    Color colorOG;
+    private void Awake()
     {
         rndr = GetComponent<Renderer>();// this is needed to get the material color
         mat = rndr.material;
-
-        Vector3 color = new Vector3(mat.color.r, mat.color.g, mat.color.b); // this gets the material color and sets the bools automaticaly
-
-        if(color.x > 0.5f)
+        colorOG = new Color(mat.color.r, mat.color.g, mat.color.b, mat.color.a); // this gets the material color and sets the bools automaticaly
+    }
+    private void Start()
+    {
+        if (colorOG.r > 0.5f)
         {
             RedB = true;
         }
@@ -27,7 +28,7 @@ public class WhatColorIsThis : MonoBehaviour // this controls if the object shou
         {
             RedB = false;
         }
-        if (color.y > 0.5f)
+        if (colorOG.g > 0.5f)
         {
             GreenB = true;
         }
@@ -35,7 +36,7 @@ public class WhatColorIsThis : MonoBehaviour // this controls if the object shou
         {
             GreenB = false;
         }
-        if (color.z > 0.5f)
+        if (colorOG.b > 0.5f)
         {
             BlueB = true;
         }
@@ -97,24 +98,41 @@ public class WhatColorIsThis : MonoBehaviour // this controls if the object shou
             }
             BlueC = BlueP;
         }
-        if(colorNrG == colorNrP)
+        if (mat.color.a == 1 && !transparent)
         {
-            mR.enabled = false;
-            col.enabled = false;
-            if(rb != null)
+            if (colorNrG == colorNrP)
             {
-                rb.useGravity = false;
-                rb.isKinematic = true;
+                mR.enabled = false;
+                col.enabled = false;
+                if (rb != null)
+                {
+                    rb.useGravity = false;
+                    rb.isKinematic = true;
+                }
+            }
+            else
+            {
+                mR.enabled = true;
+                col.enabled = true;
+                if (rb != null)
+                {
+                    rb.useGravity = true;
+                    rb.isKinematic = false;
+                }
             }
         }
-        else
+        else if (mat.color.a != 1 || transparent)
         {
-            mR.enabled = true;
-            col.enabled = true;
-            if (rb != null)
+            transparent = true;
+            if (colorNrG == colorNrP)
             {
-                rb.useGravity = true;
-                rb.isKinematic = false;
+                col.enabled = true;
+                mat.color = new Color(0, 0, 0, 1);
+            }
+            else
+            {
+                col.enabled = false;
+                mat.color = new Color(colorOG.r,colorOG.g,colorOG.b,colorOG.a);
             }
         }
     }

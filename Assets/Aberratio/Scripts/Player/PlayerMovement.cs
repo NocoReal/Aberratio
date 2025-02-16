@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float MoveSpeed = 12f, JumpHeight = 3f;
 
     public float gravity = -9.81f;
+    public bool canMove = true;
 
     bool isGrounded;
 
@@ -27,9 +28,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (!PauseMenu.GameIsPaused)
+        if (!PauseMenu.GameIsPaused && canMove)
         {
-            isGrounded = Physics.CheckSphere(groundCheck.position, 0.4f, groundMask);
+            isGrounded = Physics.CheckSphere(groundCheck.position, 0.2f, groundMask);
 
             if (isGrounded && velocity.y < 0)
             {

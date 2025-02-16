@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/Aberratio/Scenes/MainMenu.unity
     guid: 3c90c282234c37045b1728e0cfbedd79
   - enabled: 1
+    path: Assets/Aberratio/Scenes/Ch1_Intro.unity
+    guid: 56cdfd2770d4d544b8a54b9a3360ae01
+  - enabled: 1
+    path: Assets/Aberratio/Scenes/Ch3_Remote.unity
+    guid: 8688d02b4a60d1f4aa7b22b73a5d90c2
+  - enabled: 1
+    path: Assets/Aberratio/Scenes/Ch5_GIntro.unity
+    guid: 56c4d8ba91b2fac40aedd5cda0e075a1
+  - enabled: 1
     path: Assets/Aberratio/Scenes/AberratioDemo.unity
     guid: d1f68ae6e5a113446be7cb9260c92071
   m_configObjects: {}
