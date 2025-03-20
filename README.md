@@ -10,7 +10,7 @@ Or transparent ones of that channel will block your way. Travers puzzles with tw
 ## First few levels from Portal stolen.
 I needed something to go off and Portal was a very big inspiration, plus i like portal
 
-#Devlogs:
+# Devlogs:
 ## Small update | Mar 08
 Added Update logs (can be found in settings)
 
