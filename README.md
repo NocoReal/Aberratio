@@ -3,6 +3,7 @@
 
 Gamejam lasted two weeks from February 29th 2024 to March 14th 2024.
 
+# Game link:  https://nocoreal.itch.io/aberratio
 # Gameplay features:
 ## Color channel toggle remote
 You can disable the Red, Green or Blue color channel, with the new state of the art PRISMATIC LABS. Hand Held Color Toggle Device, and all objects of that color will disappear!
