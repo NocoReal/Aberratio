@@ -1,3 +1,4 @@
+![Aberratio](https://github.com/user-attachments/assets/0d309b78-d23c-43d3-8142-8b7a7aec1e50)
 # Aberratio
 ## An Acerola Jam 0 submission
 
