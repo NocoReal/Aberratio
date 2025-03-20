@@ -27,8 +27,7 @@ Added a new main menu background, and added the logo
 
 Added a small text bubble that shows controls
 
-- i think i can start working on the gameplay now-
-- 
+i think i can start working on the gameplay now
 ## Bigger update - #3 i might not be on time for the game jam deadline... |  Mar 12
 Added one new map
 
